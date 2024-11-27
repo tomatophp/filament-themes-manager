@@ -1,0 +1,29 @@
+{
+    "name": "FilamentThemesManager",
+    "alias": "filament-themes-manager",
+    "description": {
+        "ar": "Manage your frontend themes using Modules HMVC Arch and easy to use settings and upload support for FilamentPHP",
+        "en": "Manage your frontend themes using Modules HMVC Arch and easy to use settings and upload support for FilamentPHP",
+        "gr": "Manage your frontend themes using Modules HMVC Arch and easy to use settings and upload support for FilamentPHP",
+        "sp": "Manage your frontend themes using Modules HMVC Arch and easy to use settings and upload support for FilamentPHP"
+    },
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "TomatoPHP\\FilamentThemesManager\\FilamentThemesManagerServiceProvider"
+    ],
+    "files": [],
+    "title": {
+        "ar": "Filament themes manager",
+        "en": "Filament themes manager",
+        "gr": "Filament themes manager",
+        "sp": "Filament themes manager"
+    },
+    "color": "#cc1448",
+    "icon": "heroicon-c-users",
+    "placeholder": "https://raw.githubusercontent.com/tomatophp/filament-themes-manager/master/art/screenshot.jpg",
+    "type": "plugin",
+    "version": "v1.0.0",
+    "github" : "https://github.com/tomatophp/filament-themes-manager",
+    "docs" : "https://github.com/tomatophp/filament-themes-manager"
+}
