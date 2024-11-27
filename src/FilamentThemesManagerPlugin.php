@@ -7,7 +7,6 @@ use Filament\Panel;
 
 class FilamentThemesManagerPlugin implements Plugin
 {
-
     public function getId(): string
     {
         return 'filament-themes-manager';

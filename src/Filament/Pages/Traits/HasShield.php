@@ -10,7 +10,7 @@ trait HasShield
 {
     public function booted(): void
     {
-        if(filament('filament-cms')->isShieldAllowed()){
+        if (filament('filament-cms')->isShieldAllowed()) {
             $this->beforeBooted();
 
             if (! static::canAccess()) {
@@ -35,17 +35,11 @@ trait HasShield
         }
     }
 
-    protected function beforeBooted(): void
-    {
-    }
+    protected function beforeBooted(): void {}
 
-    protected function afterBooted(): void
-    {
-    }
+    protected function afterBooted(): void {}
 
-    protected function beforeShieldRedirects(): void
-    {
-    }
+    protected function beforeShieldRedirects(): void {}
 
     protected function getShieldRedirectPath(): string
     {
@@ -65,10 +59,9 @@ trait HasShield
 
     public static function canAccess(): bool
     {
-        if(filament('filament-cms')->isShieldAllowed()){
+        if (filament('filament-cms')->isShieldAllowed()) {
             return Filament::auth()->user()->can(static::getPermissionName());
-        }
-        else {
+        } else {
             return true;
         }
     }

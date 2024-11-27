@@ -9,8 +9,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\File;
-use Filament\Pages\Actions\ButtonAction;
 use Nwidart\Modules\Facades\Module;
 use TomatoPHP\FilamentThemesManager\Filament\Pages\Traits\HasShield;
 use TomatoPHP\FilamentThemesManager\Models\Theme;
@@ -18,8 +16,8 @@ use TomatoPHP\FilamentThemesManager\Settings\ThemesSettings;
 
 class Themes extends Page implements HasTable
 {
-    use InteractsWithTable;
     use HasShield;
+    use InteractsWithTable;
 
     protected static ?string $navigationIcon = 'heroicon-o-swatch';
 
@@ -27,17 +25,17 @@ class Themes extends Page implements HasTable
 
     public function getTitle(): string
     {
-        return  trans('filament-cms::messages.themes.title');
+        return trans('filament-cms::messages.themes.title');
     }
 
     public static function getNavigationLabel(): string
     {
-        return  trans('filament-cms::messages.themes.title');
+        return trans('filament-cms::messages.themes.title');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return  trans('filament-cms::messages.content.group');
+        return trans('filament-cms::messages.content.group');
     }
 
     public function disableAction(): Action
@@ -52,7 +50,7 @@ class Themes extends Page implements HasTable
                 $module = Module::find($arguments['item']['module_name']);
                 $module?->disable();
 
-                $setting = new ThemesSettings();
+                $setting = new ThemesSettings;
                 $setting->theme_name = null;
                 $setting->save();
 
@@ -88,7 +86,6 @@ class Themes extends Page implements HasTable
             });
     }
 
-
     public function activeAction(): Action
     {
         return Action::make('active')
@@ -98,26 +95,27 @@ class Themes extends Page implements HasTable
             ->color('success')
             ->requiresConfirmation()
             ->action(function (array $arguments) {
-                if(!class_exists(json_decode($arguments['item']['providers'])[0])){
+                if (! class_exists(json_decode($arguments['item']['providers'])[0])) {
                     Notification::make()
                         ->title(trans('filament-cms::messages.themes.notifications.autoload.title'))
                         ->body(trans('filament-cms::messages.themes.notifications.autoload.body'))
                         ->danger()
                         ->send();
+
                     return;
                 }
                 $module = Module::find($arguments['item']['module_name']);
                 $module?->enable();
 
                 $themes = Theme::all();
-                foreach ($themes as $theme){
-                    if($theme->module_name != $arguments['item']['module_name']) {
+                foreach ($themes as $theme) {
+                    if ($theme->module_name != $arguments['item']['module_name']) {
                         $module = Module::find($theme->module_name);
                         $module?->disable();
                     }
                 }
 
-                $setting = new ThemesSettings();
+                $setting = new ThemesSettings;
                 $setting->theme_name = $arguments['item']['module_name'];
                 $setting->save();
 
@@ -131,8 +129,6 @@ class Themes extends Page implements HasTable
 
             });
     }
-
-
 
     public function table(Table $table): Table
     {

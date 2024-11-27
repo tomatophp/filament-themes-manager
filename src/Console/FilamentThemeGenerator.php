@@ -3,10 +3,9 @@
 namespace TomatoPHP\FilamentCms\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 use TomatoPHP\ConsoleHelpers\Traits\RunCommand;
 use TomatoPHP\FilamentCms\Generator\GenerateTheme;
-use TomatoPHP\FilamentTranslations\Services\SaveScan;
+
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\spin;
 use function Laravel\Prompts\text;
@@ -34,7 +33,6 @@ class FilamentThemeGenerator extends Command
         parent::__construct();
     }
 
-
     /**
      * Execute the console command.
      *
@@ -42,14 +40,13 @@ class FilamentThemeGenerator extends Command
      */
     public function handle()
     {
-        $themeName =text(label:'What is the name of the theme?', required: true);
-        if(!$themeName){
+        $themeName = text(label: 'What is the name of the theme?', required: true);
+        if (! $themeName) {
             error('Theme name is required');
-            $themeName = text(label:'What is the name of the theme?', required: true);
+            $themeName = text(label: 'What is the name of the theme?', required: true);
         }
 
-        $themeDescription = text(label:'What is the description of the theme?', required: true, default: 'No description');
-
+        $themeDescription = text(label: 'What is the description of the theme?', required: true, default: 'No description');
 
         $response = spin(
             function () use ($themeName, $themeDescription) {

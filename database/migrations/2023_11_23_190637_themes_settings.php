@@ -6,7 +6,7 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        if(config('filament-cms.features.theme-manager')){
+        if (config('filament-cms.features.theme-manager')) {
             $this->migrator->add('themes.theme_name', 'main');
             $this->migrator->add('themes.theme_path', 'themes.main');
             $this->migrator->add('themes.theme_namespace', '');
@@ -23,7 +23,7 @@ return new class extends SettingsMigration
 
     public function down(): void
     {
-        if(config('filament-cms.features.theme-manager')) {
+        if (config('filament-cms.features.theme-manager')) {
             $this->migrator->delete('themes.theme_name');
             $this->migrator->delete('themes.theme_path');
             $this->migrator->delete('themes.theme_namespace');
